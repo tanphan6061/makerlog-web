@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://api.getmakerlog.com/seo/sitemap.xml
+Host: https://getmakerlog.com

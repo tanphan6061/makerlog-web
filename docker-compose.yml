@@ -1,0 +1,30 @@
+version: "3.7"
+
+x-common-props: &common-props
+    build:
+        context: ./
+        target: base
+    working_dir: /base
+    volumes:
+        - .:/base:cached
+        - node_modules:/base/node_modules:cached
+
+services:
+    npm:
+        <<: *common-props
+        entrypoint: npm
+    npx:
+        <<: *common-props
+        entrypoint: npx
+    dev:
+        <<: *common-props
+        ports:
+            - "3000:3000"
+        command: npm run dev
+        tty: true
+        environment:
+            DEBUG_COLORS: "true"
+            TERM: xterm-256color
+            COLORTERM: truecolor
+volumes:
+    node_modules:
